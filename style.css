@@ -1,0 +1,277 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #10152b;
+  color: #ffffff;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 16px;
+  display: grid;
+  place-items: center;
+}
+
+
+[hidden] {
+  display: none !important;
+}
+
+.menu {
+  text-align: center;
+  padding: 28px 22px;
+  border: 1px solid #303b67;
+  border-radius: 24px;
+  background: #1c2342;
+}
+
+.menu > p:not(.eyebrow) {
+  color: #c2c8e8;
+  line-height: 1.6;
+}
+
+.menu-emojis {
+  font-size: clamp(30px, 8vw, 48px);
+  margin: 28px 0;
+  letter-spacing: 5px;
+}
+
+.menu .restart {
+  margin-top: 18px;
+}
+
+.menu-secondary {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid #59618a;
+  border-radius: 12px;
+  background: #252e54;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu-secondary:hover {
+  background: #303b67;
+}
+
+.menu-record {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 24px;
+  color: #d0d5f2;
+  font-size: 14px;
+}
+
+.game {
+  width: min(100%, 620px);
+  margin: auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  color: #a9b5ff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: clamp(28px, 7vw, 42px);
+}
+
+#message {
+  color: #c2c8e8;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.stat {
+  text-align: center;
+  background: #1c2342;
+  border: 1px solid #303b67;
+  border-radius: 12px;
+  padding: 12px 4px;
+}
+
+.stat span {
+  display: block;
+  color: #b7c0e4;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.stat strong {
+  font-size: clamp(16px, 4vw, 22px);
+}
+
+.progress-track {
+  height: 8px;
+  background: #282f50;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #8b7cff;
+  transition: width 250ms ease;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.card {
+  border: 2px solid #39436f;
+  border-radius: 14px;
+  background: #252e54;
+  color: white;
+  aspect-ratio: 1;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(25px, 7vw, 44px);
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+  touch-action: manipulation;
+}
+
+.card:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: #a89cff;
+}
+
+.card:focus-visible,
+.restart:focus-visible {
+  outline: 3px solid #ffe66d;
+  outline-offset: 3px;
+}
+
+.card.revealed {
+  background: #f1efff;
+  color: #171b35;
+  border-color: #b7aaff;
+  transform: rotateY(0deg);
+}
+
+.card.matched {
+  background: #c8ffe1;
+  border-color: #62d69b;
+  color: #163b2b;
+  cursor: default;
+}
+
+.card:disabled {
+  cursor: default;
+}
+
+.feedback {
+  min-height: 24px;
+  text-align: center;
+  color: #c8ceee;
+  margin: 18px 0;
+}
+
+.restart {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 15px;
+  background: #8b7cff;
+  color: #11152b;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.restart:hover {
+  background: #a69aff;
+}
+
+.button-div-Restart-Hint > button {
+    margin: 5px;
+}
+
+
+/*
+    linguagem 
+ */
+
+ .language-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0px 20px auto;
+  /* max-width: 260px; */
+  text-align: left;
+}
+
+.language-selector label {
+  color: #c2c8e8;
+  font-size: 14px;
+}
+
+.language-selector select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #59618a;
+  border-radius: 10px;
+  background: #252e54;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
+@media (max-width: 380px) {
+  body {
+    padding: 16px 10px;
+  }
+
+  .board {
+    gap: 7px;
+  }
+
+  .card {
+    border-radius: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

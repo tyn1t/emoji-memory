@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta name="theme-color" content="#10152b">
+
+    <meta
+        name="description"
+        content="Jogue Emoji Memory, um jogo de memória gratuito. Combine pares de emojis, supere desafios e desbloqueie novas fases."
+    >
+
+    <title>Emoji Memory - Jogo da Memória</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <main class="game">
+
+        <!-- MENU PRINCIPAL -->
+        <section
+            id="mainMenu"
+            class="menu"
+            aria-labelledby="menuTitle"
+        >
+            <p class="eyebrow">DESAFIO DA MEMÓRIA</p>
+
+            <h1 id="menuTitle" tabindex="-1">
+                🧠 Emoji Memory
+            </h1>
+
+            <p>
+                Combine os pares e desbloqueie novas fases!
+            </p>
+
+            <div class="menu-emojis" aria-hidden="true">
+                🚀 🐱 🎮 🍕
+            </div>
+
+            <div class="language-selector">
+                <label for="languageSelect">
+                    🌐 Idioma / Language
+                </label>
+
+                <select id="languageSelect">
+                    <option value="pt-BR">🇧🇷 Português</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="ja">🇯🇵 日本語</option>
+                </select>
+            </div>
+
+            <button
+                id="playButton"
+                class="restart"
+                type="button"
+            >
+                ▶ Jogar
+            </button>
+
+            <button
+                id="continueButton"
+                class="menu-secondary"
+                type="button"
+            >
+                ↻ Continuar partida
+            </button>
+
+            <div class="menu-record" aria-label="Progresso do jogador">
+                <span class="BestScore">
+                    🏆 Recorde:
+                    <strong id="menuBestScore">0</strong>
+                </span>
+
+                <span class="ScoreLevel">
+                    🔓 Fase:
+                    <strong id="menuLevel">1</strong>
+                </span>
+            </div>
+        </section>
+
+        <!-- TELA DO JOGO -->
+        <section
+            id="gameScreen"
+            aria-labelledby="gameTitle"
+            hidden
+        >
+            <header class="header">
+                <p class="eyebrow">DESAFIO DA MEMÓRIA</p>
+
+                <h1 id="gameTitle" tabindex="-1">
+                    Emoji Memory 🧠
+                </h1>
+
+                <p id="message">
+                    Encontre todos os pares!
+                </p>
+            </header>
+
+            <!-- ESTATÍSTICAS -->
+            <section
+                class="stats"
+                aria-label="Estatísticas do jogo"
+            >
+                <div class="stat">
+                    <span>Fase</span>
+                    <strong id="level">1</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Pontos</span>
+                    <strong id="score">0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Tentativas</span>
+                    <strong id="attempts">0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Tempo</span>
+                    <strong id="time">00:00</strong>
+                </div>
+            </section>
+
+            <!-- PROGRESSO -->
+            <div
+                class="progress-track"
+                role="progressbar"
+                aria-label="Progresso da fase"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                aria-valuetext="0% concluído"
+            >
+                <div
+                    id="progress"
+                    class="progress-bar"
+                ></div>
+            </div>
+
+            <!-- TABULEIRO -->
+            <section
+                id="board"
+                class="board"
+                aria-label="Cartas do jogo da memória"
+            ></section>
+
+            <!-- FEEDBACK -->
+            <p
+                id="feedback"
+                class="feedback"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+            >
+                Boa sorte!
+            </p>
+
+            <!-- CONTROLES -->
+            <div class="button-div-Restart-Hint">
+
+                <button
+                    id="restart"
+                    class="restart"
+                    type="button"
+                >
+                    Reiniciar jogo
+                </button>
+
+                <button
+                    id="hintButton"
+                    class="restart"
+                    type="button"
+                >
+                    🎁 Ganhar uma dica
+                </button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SDK DO YOUTUBE: DEVE SER CARREGADO ANTES DO JOGO -->
+    <script src="https://www.youtube.com/game_api/v1"></script>
+
+    <!-- CÓDIGO DO JOGO -->
+    <script type="module" src="./script.js"></script>
+
+</body>
+</html>
