@@ -482,9 +482,6 @@ async function finishLevel() {
     if (messageElement) messageElement.textContent = translate("message").victory;
     if (feedbackElement) feedbackElement.textContent = translate("feedback").finalScore(score);
 
-    await saveProgress();
-    await submitScore();
-    showInterstitialAd();
   }
 }
 
@@ -605,31 +602,29 @@ function revealHint() {
 // YOUTUBE PLAYABLES HIGH SCORE SUBMISSION
 // ====================================================================
 
-async function submitScore() {
-  if (
-    typeof ytgame === "undefined" ||
-    !ytgame.IN_PLAYABLES_ENV ||
-    !ytgame.engagement ||
-    typeof ytgame.engagement.sendScore !== "function"
-  ) {
-    return;
-  }
+async function submitScore(score) {
+    if (
+        typeof ytgame === "undefined" ||
+        !ytgame.engagement?.sendScore
+    ) {
+        return;
+    }
 
-  // Garante estritamente que o valor enviado seja um número inteiro (Integer)
-  const finalScore = Math.max(
-    0,
-    Math.min(Number.MAX_SAFE_INTEGER, Math.floor(Number(bestScore) || 0))
-  );
+    const scoreToSend = Math.floor(Number(score));
 
-  try {
-    await ytgame.engagement.sendScore({
-      value: finalScore
-    });
+    if (!Number.isSafeInteger(scoreToSend) || scoreToSend < 0) {
+        return;
+    }
 
-    console.log("Pontuação enviada como inteiro:", finalScore);
-  } catch (error) {
-    console.error("Erro ao enviar pontuação:", error);
-  }
+    try {
+        await ytgame.engagement.sendScore({
+            value: scoreToSend
+        });
+
+        console.log("Score enviado:", scoreToSend);
+    } catch (error) {
+        console.error("Erro ao enviar score:", error);
+    }
 }
 // ====================================================================
 // INITIALIZATION
@@ -638,6 +633,12 @@ async function submitScore() {
 async function initializeGame() {
   await loadProgress();
   updateLanguage();
+
+  bestScore = Math.max(bestScore, score);
+
+  updateStats();
+  await saveProgress();
+  await submitScore(bestScore);
   showMenu();
 
  if (
